@@ -6,8 +6,11 @@ import { IoCartSharp } from "react-icons/io5";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { FaUser } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
+  let cartshowwww = useSelector((state) => state.product);
+  console.log(cartshowwww);
   let [show, setShow] = useState(false);
   let [cartshow, setCartShow] = useState(false);
   let [signshow, setSignShow] = useState(false);
@@ -88,14 +91,23 @@ const Navbar = () => {
             </div>
           </div>
           <div className="w-1/4 relative">
-            <div className="flex justify-end">
+            <div className="flex justify-end items-center">
               <div className="flex" ref={sign}>
                 <FaUser />
                 <IoMdArrowDropdown className="mr-3" />
               </div>
 
               <div ref={cart}>
-                <IoCartSharp />
+                <button
+                  type="button"
+                  class="relative inline-flex items-center p-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg"
+                >
+                  <IoCartSharp />
+                  <span class="sr-only">Notifications</span>
+                  <div class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900">
+                    {cartshowwww.value}
+                  </div>
+                </button>
               </div>
             </div>
             {cartshow && (

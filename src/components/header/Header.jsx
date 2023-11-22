@@ -1,6 +1,7 @@
 import React from "react";
 import Container from "../Container";
 import Logo from "../../assets/logo.png";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -13,20 +14,17 @@ const Header = () => {
           <div className="w-2/3">
             <ul className="flex justify-end gap-x-5">
               <li>
-                <a
-                  className="font-sans font-normal text-[16px] text-[#262626]"
-                  href="#"
-                >
+                <Link className="font-sans font-normal text-[16px] text-[#262626]">
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
+                  to="/product"
                   className="font-sans font-normal text-[16px] text-[#262626]"
-                  href="#"
                 >
                   Shop
-                </a>
+                </Link>
               </li>
               <li>
                 <a
