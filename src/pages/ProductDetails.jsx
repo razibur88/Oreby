@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
-import { ami, tumi } from "../components/slice/productSlice";
+import { ami, minus } from "../components/slice/productSlice";
 const ProductDetails = () => {
   let amitumi = useSelector((state) => state.product);
   console.log(amitumi);
@@ -28,14 +28,11 @@ const ProductDetails = () => {
   }, []);
 
   let handleDecrement = () => {
-    if (count > 0) {
-      setCount(count - 1);
-    }
+    dispatch(minus());
   };
 
   let handleIncrement = () => {
     dispatch(ami());
-    dispatch(tumi(44.0));
   };
   return (
     <div>
@@ -64,7 +61,10 @@ const ProductDetails = () => {
 
         <div className="w-[30%] pb-10">
           <h3 className="py-3 font-sans text-[16px] font-normal text-[#262626]">
-            Subtotal: <span className="font-bold">${amitumi.subtotal}</span>
+            Subtotal:{" "}
+            <span className="font-bold">
+              ${amitumi.subtotal * amitumi.value}
+            </span>
           </h3>
           <div className="flex justify-between">
             <div className="">

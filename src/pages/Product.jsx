@@ -5,14 +5,24 @@ import Container from "../components/Container";
 import { FaHeart, FaShoppingCart } from "react-icons/fa";
 import { LuRefreshCw } from "react-icons/lu";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { tumi, ami } from "../components/slice/productSlice";
 
 const Product = () => {
   let data = useContext(AppContext);
+  let dispatch = useDispatch();
+  let handlePrice = (price) => {
+    dispatch(ami());
+    dispatch(tumi(price));
+  };
   return (
     <Container>
       <div className="flex justify-between flex-wrap">
         {data.map((item) => (
-          <div className="relative group w-[24%]">
+          <div
+            className="relative group w-[24%]"
+            onClick={() => handlePrice(item.price)}
+          >
             <Link to={`/product/${item.id}`}>
               <img src={item.images[0]} alt="ami" className="h-[300px]" />
               <div className="absolute bg-[#F5F5F5] opacity-0 overflow-hidden w-full h-[0px] right-0 bottom-[40px] ease-in duration-300 group-hover:h-[120px] group-hover:opacity-100">
@@ -48,7 +58,7 @@ const Product = () => {
                   Basic Crew Neck Tee
                 </h2>
                 <h4 className="font-sans text-[20px] font-normal text-[#767676]">
-                  $44.00
+                  {item.price}
                 </h4>
               </div>
             </Link>

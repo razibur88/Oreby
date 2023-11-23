@@ -10,6 +10,11 @@ export const counterSlice = createSlice({
     ami: (state) => {
       state.value += 1;
     },
+    minus: (state) => {
+      if (state.value > 0) {
+        state.value -= 1;
+      }
+    },
     tumi: (state, action) => {
       state.subtotal = state.value * action.payload;
     },
@@ -17,6 +22,6 @@ export const counterSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { ami, tumi } = counterSlice.actions;
+export const { ami, tumi, minus } = counterSlice.actions;
 
 export default counterSlice.reducer;
