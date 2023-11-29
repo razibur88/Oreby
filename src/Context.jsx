@@ -9,8 +9,7 @@ let AppProvider = ({ children }) => {
     axios.get("https://dummyjson.com/products").then((response) => {
       setData(response.data.products);
       setImages(response.data.products);
-    });
-  };
+    });  };
 
   useEffect(() => {
     getData();

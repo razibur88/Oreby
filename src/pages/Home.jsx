@@ -7,7 +7,6 @@ import Newarrivals from "../components/Newarrivals";
 const Home = () => {
   return (
     <>
-     
       <Banner />
       <Sales />
       <Newarrivals />

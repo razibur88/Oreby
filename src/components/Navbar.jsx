@@ -9,14 +9,17 @@ import { RxCross2 } from "react-icons/rx";
 import { useSelector } from "react-redux";
 
 const Navbar = () => {
-  let cartshowwww = useSelector((state) => state.product);
-  console.log(cartshowwww);
+  let data = useSelector((state) => state.cartItem.cartItem);
   let [show, setShow] = useState(false);
   let [cartshow, setCartShow] = useState(false);
   let [signshow, setSignShow] = useState(false);
   let categoryshow = useRef();
   let cart = useRef();
   let sign = useRef();
+
+  let ami = data.reduce((firstValue, secondValue) => {
+    return firstValue + secondValue.qun;
+  }, 0);
 
   useEffect(() => {
     document.body.addEventListener("click", (e) => {
@@ -105,48 +108,53 @@ const Navbar = () => {
                   <IoCartSharp />
                   <span class="sr-only">Notifications</span>
                   <div class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900">
-                    {cartshowwww.value}
+                    {ami}
                   </div>
                 </button>
               </div>
             </div>
+
             {cartshow && (
               <div className="w-[358px] bg-[#F0F0F0] py-5 absolute top-[50px] right-0 z-50">
-                <div className="flex justify-around items-center">
-                  <div className="w-[80px] h-[80px] bg-[#D8D8D8]"></div>
-                  <div className="">
-                    <h3 className="font-sans text-[16px] font-bold text-[#262626]">
-                      Black Smart Watch
+                {data.map(() => (
+                  <div className="mt-3">
+                    <div className="flex justify-around items-center">
+                      <div className="w-[80px] h-[80px] bg-[#D8D8D8]"></div>
+                      <div className="">
+                        <h3 className="font-sans text-[16px] font-bold text-[#262626]">
+                          amii
+                        </h3>
+                        <p className="font-sans text-[16px] font-bold text-[#262626]">
+                          $44.00
+                        </p>
+                      </div>
+                      <div className="">
+                        <RxCross2 />
+                      </div>
+                    </div>
+                    <h3 className="pl-5 py-3 font-sans text-[16px] font-normal text-[#262626]">
+                      Subtotal: <span className="font-bold">$44.00</span>
                     </h3>
-                    <p className="font-sans text-[16px] font-bold text-[#262626]">
-                      $44.00
-                    </p>
+                    <div className="flex justify-around">
+                      <div className="">
+                        <a
+                          className="h-[50px] w-[148px] border-2 border-[#222] text-center leading-[50px] font-sans block text-[16px] font-normal text-[#262626] capitalize hover:bg-[#262626] hover:text-white"
+                          href="#"
+                        >
+                          view cart
+                        </a>
+                      </div>
+                      <div className="">
+                        <a
+                          className="h-[50px] w-[148px] border-2 border-[#222] text-center leading-[50px] font-sans block text-[16px] font-normal text-[#262626] capitalize hover:bg-[#262626] hover:text-white"
+                          href="#"
+                        >
+                          Checkout
+                        </a>
+                      </div>
+                    </div>
                   </div>
-                  <div className="">
-                    <RxCross2 />
-                  </div>
-                </div>
-                <h3 className="pl-5 py-3 font-sans text-[16px] font-normal text-[#262626]">
-                  Subtotal: <span className="font-bold">$44.00</span>
-                </h3>
-                <div className="flex justify-around">
-                  <div className="">
-                    <a
-                      className="h-[50px] w-[148px] border-2 border-[#222] text-center leading-[50px] font-sans block text-[16px] font-normal text-[#262626] capitalize hover:bg-[#262626] hover:text-white"
-                      href="#"
-                    >
-                      view cart
-                    </a>
-                  </div>
-                  <div className="">
-                    <a
-                      className="h-[50px] w-[148px] border-2 border-[#222] text-center leading-[50px] font-sans block text-[16px] font-normal text-[#262626] capitalize hover:bg-[#262626] hover:text-white"
-                      href="#"
-                    >
-                      Checkout
-                    </a>
-                  </div>
-                </div>
+                ))}
               </div>
             )}
             {signshow && (
