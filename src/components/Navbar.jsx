@@ -108,14 +108,20 @@ const Navbar = () => {
                   <IoCartSharp />
                   <span class="sr-only">Notifications</span>
                   <div class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900">
-                    {ami}
+                    {data.length}
                   </div>
                 </button>
               </div>
             </div>
 
             {cartshow && (
-              <div className="w-[358px] bg-[#F0F0F0] py-5 absolute top-[50px] right-0 z-50">
+              <div
+                className={
+                  !data
+                    ? "w-[358px] bg-[#F0F0F0] py-5 absolute top-[50px] right-0 z-50"
+                    : ""
+                }
+              >
                 {data.map(() => (
                   <div className="mt-3">
                     <div className="flex justify-around items-center">
